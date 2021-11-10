@@ -29,6 +29,9 @@ namespace LessonGraphs
 
             Console.WriteLine("Order: {0}", graph.Order);
             Console.WriteLine("Size: {0}", graph.Size);
+            
+            graph.DFS();
+            graph.BFS();
         }
     }
 }

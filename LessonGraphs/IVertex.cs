@@ -1,10 +1,12 @@
-﻿namespace LessonGraphs
+﻿using System.Collections.Generic;
+using System.Xml.Schema;
+
+namespace LessonGraphs
 {
-    public class IVertex
+    public interface IVertex
     {
-        public Edge AddEdge(IVertex target, float weight = 1)
-        {
-            
-        }
+        public dynamic Value { get; }
+        public HashSet<Edge> Edges { get; }
+        public Edge AddEdge(IVertex target, float weight = 1);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LessonGraphs
 {
@@ -31,6 +32,60 @@ namespace LessonGraphs
             }
         }
 
+        public void DFS(IVertex v = null)
+        {
+            HashSet<IVertex> visited = new HashSet<IVertex>();
+            Stack<IVertex> S = new Stack<IVertex>();
+
+            if (v == null)
+            {
+                v = vertices[0];
+            }
+            S.Push(v);
+            Console.Write("DFS: [");
+            while (S.Count > 0)
+            {
+                IVertex current = S.Pop();
+                Console.Write(current.Value + " ");
+                visited.Add(current);
+                foreach (Edge e in current.Edges)
+                {
+                    if (!visited.Contains(e.Destination))
+                    {
+                        S.Push(e.Destination);
+                    }
+                }
+            }
+            Console.Write("]");
+        }
+        
+        public void BFS(IVertex v = null)
+        {
+            HashSet<IVertex> visited = new HashSet<IVertex>();
+            Queue<IVertex> Q = new Queue<IVertex>();
+
+            if (v == null)
+            {
+                v = vertices[0];
+            }
+            Q.Enqueue(v);
+            Console.Write("BFS: [");
+            while (Q.Count > 0)
+            {
+                IVertex current = Q.Dequeue();
+                Console.Write(current.Value + " ");
+                visited.Add(current);
+                foreach (Edge e in current.Edges)
+                {
+                    if (!visited.Contains(e.Destination))
+                    {
+                        Q.Enqueue(e.Destination);
+                    }
+                }
+            }
+            Console.Write("]");
+        }
+        
         public void AddVertex(IVertex vertex)
         {
             vertices.Add(vertex);

@@ -7,7 +7,7 @@ namespace LessonGraphs
     {
         private T value;
         private Type type;
-        private HashSet<Edge> outgoing;
+        private HashSet<Edge> edges;
         private int indexInGraph;
 
         public Type Type
@@ -18,9 +18,9 @@ namespace LessonGraphs
         {
             get { return value; }
         }
-        public HashSet<Edge> Outgoing
+        public HashSet<Edge> Edges
         {
-            get { return outgoing; }
+            get { return edges; }
         }
         public int IndexInGraph
         {
@@ -30,7 +30,7 @@ namespace LessonGraphs
         public Edge AddEdge(IVertex target, float weight = 1)
         {
             Edge edge = new Edge(this, target, weight);
-            outgoing.Add(edge);
+            edges.Add(edge);
             return edge;
         }
         
@@ -38,14 +38,14 @@ namespace LessonGraphs
         {
             this.type = typeof(T);
             this.value = value;
-            this.outgoing = new HashSet<Edge>();
+            this.edges = new HashSet<Edge>();
         }
                 
         public Vertex(T value, Graph G)
         {
             this.type = typeof(T);
             this.value = value;
-            this.outgoing = new HashSet<Edge>();
+            this.edges = new HashSet<Edge>();
             this.indexInGraph = G.Order;
             G.AddVertex(this);
         }
